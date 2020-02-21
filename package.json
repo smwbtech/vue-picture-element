@@ -2,6 +2,7 @@
   "name": "vue-picture-element",
   "version": "0.1.0",
   "private": true,
+  "types": "./src/types/vue-picture-element.d.ts",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -29,9 +30,11 @@
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.1.2",
+    "prettier": "1.19.1",
     "typescript": "~3.7.5",
     "vue-template-compiler": "^2.6.11"
   }
