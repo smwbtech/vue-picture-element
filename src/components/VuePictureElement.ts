@@ -27,20 +27,25 @@ export default class VuePictureElement extends Vue {
         for (const [label, options] of Object.entries(
           this.$props.settings as SettingItem
         )) {
-          const source = h('source', {
-            attrs: {
-              srcset: generateSrcset(
-                this.$props.path,
-                this.$props.name,
-                label,
-                ext,
-                options.delimeters
-              ),
-              media: queryToString(options.media),
-              type: Extansions[ext]
-            }
-          })
-          sources.push(source)
+          if (
+            !this.$props.settings[label].test ||
+            this.$props.settings[label]?.test?.test(ext)
+          ) {
+            const source = h('source', {
+              attrs: {
+                srcset: generateSrcset(
+                  this.$props.path,
+                  this.$props.name,
+                  label,
+                  ext,
+                  options.delimeters
+                ),
+                media: queryToString(options.media),
+                type: Extansions[ext]
+              }
+            })
+            sources.push(source)
+          }
         }
       } else {
         const source = h('source', {

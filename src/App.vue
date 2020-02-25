@@ -4,6 +4,7 @@
       :extensions="['png', 'jpg']"
       :path="'/img'"
       :name="'image'"
+      :settings="settings"
     />
   </div>
 </template>
@@ -15,6 +16,24 @@ import VuePictureElement from '@/components/VuePictureElement'
 @Component({
   components: {
     VuePictureElement
+  },
+
+  data() {
+    return {
+      settings: {
+        large: {
+          media: { 'max-width': '200px', orientation: 'landscape' },
+          delimeters: ['2x', '3x']
+        },
+        small: {
+          media: { 'max-width': '200px', orientation: 'landscape' },
+          delimeters: ['', '200w', '400w']
+        },
+        $regular: {
+          test: /jpg/
+        }
+      }
+    }
   }
 })
 export default class App extends Vue {}
