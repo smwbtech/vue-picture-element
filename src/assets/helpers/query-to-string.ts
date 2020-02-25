@@ -1,6 +1,5 @@
-import { MediaQuery } from 'vue-picture-element'
-
-export default function (queries: MediaQuery) {
+export default function(queries: MediaQuery | undefined): string {
+  if (queries === undefined) return ''
   return Object.values(queries)
     .toString()
     .replace(/,/, ',')
