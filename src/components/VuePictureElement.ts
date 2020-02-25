@@ -1,28 +1,8 @@
-import { Settings, SettingItem } from 'vue-picture-element'
+import { Extansions, AvailableTypes } from '@/types/image-types'
 import { VNode, CreateElement } from 'vue'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import queryToString from '@/assets/helpers/query-to-string'
 import generateSrcset from '@/assets/helpers/srcset-generator'
-
-enum Extansions {
-  apng = 'image/apng',
-  bmp = 'image/bmp',
-  gif = 'image/gif',
-  cur = 'image/x-icon',
-  ico = 'image/x-icon',
-  jpg = 'image/jpeg',
-  jpeg = 'image/jpeg',
-  jfif = 'image/jpeg',
-  pjpeg = 'image/jpeg',
-  pjp = 'image/jpeg',
-  png = 'image/png',
-  svg = 'image/svg+xml',
-  tif = 'image/tiff',
-  tiff = 'image/tiff',
-  webp = 'image/webp'
-}
-
-type AvailableTypes = keyof typeof Extansions
 
 @Component
 export default class VuePictureElement extends Vue {
@@ -40,33 +20,36 @@ export default class VuePictureElement extends Vue {
   @Prop() readonly settings?: Settings
 
   render(h: CreateElement): VNode {
-    const sources = this.$props.extensions.map((ext: AvailableTypes) => {
+    const sources: VNode[] = []
+    this.$props.extensions.forEach((ext: AvailableTypes) => {
       // If user pass settings object
       if (this.$props.settings) {
         for (const [label, options] of Object.entries(
           this.$props.settings as SettingItem
         )) {
-          return h('source', {
+          const source = h('source', {
             attrs: {
               srcset: generateSrcset(
                 this.$props.path,
                 this.$props.name,
                 label,
                 ext,
-                options.xDelimetrs
+                options.delimeters
               ),
               media: queryToString(options.media),
               type: Extansions[ext]
             }
           })
+          sources.push(source)
         }
       } else {
-        return h('source', {
+        const source = h('source', {
           attrs: {
             src: `${this.$props.path}/${this.$props.name}.${ext}`,
             type: Extansions[ext]
           }
         })
+        sources.push(source)
       }
     })
     return h('picture', {}, [sources])
