@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <VuePictureElement
+      alt="Some picture"
       :extensions="['png', 'jpg']"
       :path="'/img'"
       :name="'image'"

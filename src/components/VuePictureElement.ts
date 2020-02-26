@@ -7,6 +7,8 @@ import sizeToString from '@/assets/helpers/size-generator'
 
 @Component
 export default class VuePictureElement extends Vue {
+  @Prop({ type: String, default: '' }) readonly alt?: string
+
   @Prop({
     type: Array,
     required: true,
@@ -22,6 +24,14 @@ export default class VuePictureElement extends Vue {
 
   render(h: CreateElement): VNode {
     const sources: VNode[] = []
+    const img = h('img', {
+      attrs: {
+        alt: this.$props.alt,
+        src: `${this.$props.path}/${this.$props.name}.${
+          this.$props.extensions[this.$props.extensions.length - 1]
+        }`
+      }
+    })
     this.$props.extensions.forEach((ext: AvailableTypes) => {
       // If user pass settings object
       if (this.$props.settings) {
@@ -59,6 +69,6 @@ export default class VuePictureElement extends Vue {
         sources.push(source)
       }
     })
-    return h('picture', {}, [sources])
+    return h('picture', {}, [...sources, img])
   }
 }
