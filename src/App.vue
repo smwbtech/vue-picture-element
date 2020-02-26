@@ -29,6 +29,22 @@ import VuePictureElement from '@/components/VuePictureElement'
           media: { 'max-width': '200px', orientation: 'landscape' },
           delimeters: ['', '200w', '400w']
         },
+        /* eslint-disable */
+        custom_size: {
+          media: {
+            'max-width': '400px',
+            orientation: 'landscape',
+            'pixel-ratio': '2x'
+          },
+          delimeters: ['', '100w', '300w'],
+          size: [
+            [{ 'max-width': '300px' }, '50em'],
+            ['40em'],
+            [{ 'min-width': '20px' }, '10vw']
+          ],
+          test: /png/
+        },
+        /* eslint-enable */
         $regular: {
           test: /jpg/
         }

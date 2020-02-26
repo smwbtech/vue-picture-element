@@ -3,6 +3,7 @@ import { VNode, CreateElement } from 'vue'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import queryToString from '@/assets/helpers/query-to-string'
 import generateSrcset from '@/assets/helpers/srcset-generator'
+import sizeToString from '@/assets/helpers/size-generator'
 
 @Component
 export default class VuePictureElement extends Vue {
@@ -41,7 +42,8 @@ export default class VuePictureElement extends Vue {
                   options.delimeters
                 ),
                 media: queryToString(options.media),
-                type: Extansions[ext]
+                type: Extansions[ext],
+                size: sizeToString(options.size)
               }
             })
             sources.push(source)

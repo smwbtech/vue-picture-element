@@ -2,9 +2,12 @@ declare interface MediaQuery {
   [key: string]: [string]
 }
 
+declare type SizeType = [[MediaQuery?, string?]]
+
 declare interface SettingItem {
   media?: MediaQuery[]
   delimetrs?: string[]
+  size?: SizeType
   test?: RegExp
 }
 
