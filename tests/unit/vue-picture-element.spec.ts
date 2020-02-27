@@ -53,4 +53,40 @@ describe('Testing VuePictureElement.ts', () => {
   it('VuePictureElement should be VueInstance', () => {
     expect(cmp.isVueInstance()).toBeTruthy()
   })
+
+  describe('Testing rendering', () => {
+    it('Should render picture element', () => {
+      expect(cmp.is('picture')).toBeTruthy()
+    })
+
+    describe('Testing sourset for "large" image', () => {
+      let sourceElWebp: Wrapper<Vue>
+      let sourceElPng: Wrapper<Vue>
+      let sourceElJpg: Wrapper<Vue>
+
+      beforeEach(() => {
+        sourceElWebp = cmp.find('source[srcset*="/img/image-large@2x.webp 2x"]')
+        sourceElPng = cmp.find('source[srcset*="/img/image-large@2x.png 2x"]')
+        sourceElJpg = cmp.find('source[srcset*="/img/image-large@2x.jpg 2x"]')
+      })
+
+      it('Should exists', () => {
+        expect(sourceElWebp.exists()).toBeTruthy()
+        expect(sourceElPng.exists()).toBeTruthy()
+        expect(sourceElJpg.exists()).toBeTruthy()
+      })
+
+      it('Should have srcset eq "/img/image-large@2x.[ext] 2x, /img/image-large@3x.[ext] 3x"', () => {
+        expect(sourceElWebp.attributes('srcset')).toEqual(
+          '/img/image-large@2x.webp 2x, /img/image-large@3x.webp 3x'
+        )
+        expect(sourceElPng.attributes('srcset')).toEqual(
+          '/img/image-large@2x.png 2x, /img/image-large@3x.png 3x'
+        )
+        expect(sourceElJpg.attributes('srcset')).toEqual(
+          '/img/image-large@2x.jpg 2x, /img/image-large@3x.jpg 3x'
+        )
+      })
+    })
+  })
 })
