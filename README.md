@@ -259,6 +259,6 @@ Type attribute will be assigned automatically based on extension of image
 | tiff      | image/tiff    |
 | webp      | image/webp    |
 
-```
+## LICENSE
 
-```
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
