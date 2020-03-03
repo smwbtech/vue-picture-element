@@ -2,6 +2,17 @@
 
 vue-picture-element is a component to render flexible images. It based on picture html element and provide all possibilities that has origin, but automatize some functionality
 
+- [Installation](#installation)
+- [Props](#props)
+- [Settings object](#settings-object)
+  - [Base example](#base-example)
+  - [Width and pixel ratio delimiters](#width-and-pixel-ratio-delimiters)
+    - [Width delimiters](#width-delimiters)
+    - [Pixel ratio delimiters](#pixel-ratio-delimiters)
+    - [Empty delimeter](#empty-delimeter)
+  - [Optional label](#optional-label)
+- [Available extensions](#available-extensions)
+
 ## Installation
 
 ```
@@ -163,6 +174,62 @@ You shouldn't mix types delimiters
   />
   <source
     src="/img/image-label@2x.png 2x, /img/image-label@3x.png 3x"
+    type="image/png"
+  />
+  <img alt="Some picture" src="/img/image.png" />
+</picture>
+```
+
+#### Empty delimeter
+
+If you want srcset to contain path to image without any delimeter, just pass empty string
+
+```javascript
+{
+  label: {
+    delimetrs: ['', '2x', '3x']
+  }
+}
+```
+
+**result html**
+
+```html
+<picture>
+  <source
+    src="/img/image-label.webp, /img/image-label@2x.webp 2x, /img/image-label@3x.webp 3x"
+    type="image/webp"
+  />
+  <source
+    src="/img/image-label.png, /img/image-label@2x.png 2x, /img/image-label@3x.png 3x"
+    type="image/png"
+  />
+  <img alt="Some picture" src="/img/image.png" />
+</picture>
+```
+
+### Optional label
+
+If you don't want label to be part of path to image, just start it with pewfix '\$'
+
+```javascript
+{
+  $label: {
+    delimetrs: ['', '2x', '3x']
+  }
+}
+```
+
+**result html**
+
+```html
+<picture>
+  <source
+    src="/img/image.webp, /img/image@2x.webp 2x, /img/image@3x.webp 3x"
+    type="image/webp"
+  />
+  <source
+    src="/img/image.png, /img/image@2x.png 2x, /img/image@3x.png 3x"
     type="image/png"
   />
   <img alt="Some picture" src="/img/image.png" />
