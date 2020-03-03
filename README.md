@@ -29,12 +29,15 @@ Vue.component('vue-picture-element', VuePictureElement)
 
 ## Props
 
+**required**
+_optional_
+
 | Property       | Type     | Default | Description                                                                                           |
 | -------------- | -------- | ------- | ----------------------------------------------------------------------------------------------------- |
 | **extensions** | string[] | -       | Array of extensions, for example \['webp','png','jpg'\] [available extensions](#available-extensions) |
 | **path**       | string   | '/'     | Path to folder with images, for example '/images'                                                     |
 | **name**       | string   | -       | Base name for image                                                                                   |
-| **_settings_** | object   | -       | Settings for image [more info with examples](#settings-object)                                        |
+| _settings_     | object   | -       | Settings for image [more info with examples](#settings-object)                                        |
 
 ## Settings object
 
@@ -43,17 +46,17 @@ Settings object should implements following interface
 ```javascript
 {
     label: {
-        /* All available media queries. Will form media attribute*/
-        media: { 'max-width': '200px', orientation: 'landscape' },
-        /* Delimetrs for width or pixel ratio*/
-        delimeters: ['200w', '400w'],
+        /* All available media queries. Will form media attribute */
+        media: { 'max-width': '1200px', orientation: 'landscape' },
+        /* Delimetrs for width or pixel ratio. Don't mix them. */
+        delimeters: ['320w', '480w', '800w'], // or it could be ['2x', '3x'] if you are interested in pixel ratio
         /* Will form size attribute */
         size: [
-            [{ 'max-width': '300px' }, '50em'],
-            ['40em'],
-            [{ 'min-width': '20px' }, '10vw']
+            [{ 'max-width': '320px' }, '280px'],
+            [{ 'max-width': '480px' }, '440px']
+            ['800px'],
         ],
-        /* If you want to implement this settings only for particular image format, pass regexp with it*/
+        /* If you want to implement this settings only for particular image format, pass regexp with it */
         test: /png/
     }
 }
@@ -97,10 +100,70 @@ It will form the following html code
 <picture>
   <source src="/img/image.webp" type="image/webp" />
   <source
-    srcset="/img/image-label-200.png 200w, /img/image-label-400.png 400w"
-    media="(max-width: 200px) and (orientation: landscape)"
+    srcset="
+      /img/image-label-320.png 320w,
+      /img/image-label-480.png 480w,
+      /img/image-label-800.png 800w
+    "
+    media="(max-width: 1200px) and (orientation: landscape)"
     type="image/png"
-    size="(max-width: 300px) 50em, 40em, (min-width: 20px) 10vw"
+    size="(max-width: 320px) 280px, (max-width: 480px) 440px, 800px"
+  />
+  <img alt="Some picture" src="/img/image.png" />
+</picture>
+```
+
+### Width and pixel ratio delimiters
+
+You shouldn't mix types delimiters
+
+#### Width delimiters
+
+```javascript
+{
+  label: {
+    delimetrs: ['200w', '400w']
+  }
+}
+```
+
+**result html**
+
+```html
+<picture>
+  <source
+    src="/img/image-label-200.webp 200w, /img/image-label-400.webp 400w"
+    type="image/webp"
+  />
+  <source
+    src="/img/image-label-200.png 200w, /img/image-label-400.png 400w"
+    type="image/png"
+  />
+  <img alt="Some picture" src="/img/image.png" />
+</picture>
+```
+
+#### Pixel ratio delimiters
+
+```javascript
+{
+  label: {
+    delimetrs: ['2x', '3x']
+  }
+}
+```
+
+**result html**
+
+```html
+<picture>
+  <source
+    src="/img/image-label@2x.webp 2x, /img/image-label@3x.webp 3x"
+    type="image/webp"
+  />
+  <source
+    src="/img/image-label@2x.png 2x, /img/image-label@3x.png 3x"
+    type="image/png"
   />
   <img alt="Some picture" src="/img/image.png" />
 </picture>
@@ -128,3 +191,7 @@ Type attribute will be assigned automatically based on extension of image
 | tif       | image/tiff    |
 | tiff      | image/tiff    |
 | webp      | image/webp    |
+
+```
+
+```
