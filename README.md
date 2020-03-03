@@ -29,7 +29,7 @@ Vue.component('vue-picture-element', VuePictureElement)
 
 ## Props
 
-**required**
+**required**  
 _optional_
 
 | Property       | Type     | Default | Description                                                                                           |
