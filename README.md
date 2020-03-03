@@ -29,9 +29,9 @@ Vue.component('vue-picture-element', VuePictureElement)
 
 ## Props
 
-| Property       | Type     | Default | Description                                                                                        |
-| -------------- | -------- | ------- | -------------------------------------------------------------------------------------------------- |
-| **extensions** | String[] | -       | Array of extensions, for example ['webp','png','jpg'][available extensions](#available-extensions) |
+| Property       | Type     | Default | Description                                                                                           |
+| -------------- | -------- | ------- | ----------------------------------------------------------------------------------------------------- |
+| **extensions** | String[] | -       | Array of extensions, for example \['webp','png','jpg'\] [available extensions](#available-extensions) |
 
 ## Available extensions
 
