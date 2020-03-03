@@ -31,7 +31,33 @@ Vue.component('vue-picture-element', VuePictureElement)
 
 | Property       | Type     | Default | Description                                                                                           |
 | -------------- | -------- | ------- | ----------------------------------------------------------------------------------------------------- |
-| **extensions** | String[] | -       | Array of extensions, for example \['webp','png','jpg'\] [available extensions](#available-extensions) |
+| **extensions** | string[] | -       | Array of extensions, for example \['webp','png','jpg'\] [available extensions](#available-extensions) |
+| **path**       | string   | '/'     | Path to folder with images, for example '/images'                                                     |
+| **name**       | string   | -       | Base name for image                                                                                   |
+| **_settings_** | object   | -       | Settings for image [more info with examples](#settings-object)                                        |
+
+## Settings object
+
+Settings object should implements following interface
+
+```javascript
+{
+    label: {
+        /* All available media queries. Will form media attribute*/
+        media: { 'max-width': '200px', orientation: 'landscape' },
+        /* Delimetrs for width or pixel ratio*/
+        delimeters: ['200w', '400w'],
+        /* Will form size attribute */
+        size: [
+            [{ 'max-width': '300px' }, '50em'],
+            ['40em'],
+            [{ 'min-width': '20px' }, '10vw']
+        ],
+        /* If you want to implement this settings only for particular image format, pass regexp with it*/
+        test: /png/
+    }
+}
+```
 
 ## Available extensions
 
