@@ -7,6 +7,13 @@
       :name="'image'"
       :settings="settings"
     />
+    <VuePictureElement
+      alt="Some picture"
+      :extensions="['webp', 'png']"
+      :path="'/img'"
+      :name="'image'"
+      :settings="settings2"
+    />
   </div>
 </template>
 
@@ -48,6 +55,18 @@ import VuePictureElement from '@/components/VuePictureElement'
         /* eslint-enable */
         $regular: {
           test: /jpg/
+        }
+      },
+      settings2: {
+        label: {
+          media: { 'max-width': '200px', orientation: 'landscape' },
+          delimeters: ['200w', '400w'],
+          size: [
+            [{ 'max-width': '300px' }, '50em'],
+            ['40em'],
+            [{ 'min-width': '20px' }, '10vw']
+          ],
+          test: /png/
         }
       }
     }

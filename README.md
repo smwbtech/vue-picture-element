@@ -59,6 +59,53 @@ Settings object should implements following interface
 }
 ```
 
+### Base example
+
+So, lets try to use the above-stated example
+
+```html
+<temlate>
+     <VuePictureElement
+      alt="Some picture"
+      :extensions="['webp', 'png']"
+      :path="'/img'"
+      :name="'image'"
+      :settings="settings"
+    />
+</template>
+```
+
+```javascript
+export default {
+  data() {
+    return {
+      settings: {
+        label: {
+          /* all fields from above-stated example */
+        }
+      }
+    }
+  }
+}
+```
+
+It will form the following html code
+
+**result html**
+
+```html
+<picture>
+  <source src="/img/image.webp" type="image/webp" />
+  <source
+    srcset="/img/image-label-200.png 200w, /img/image-label-400.png 400w"
+    media="(max-width: 200px) and (orientation: landscape)"
+    type="image/png"
+    size="(max-width: 300px) 50em, 40em, (min-width: 20px) 10vw"
+  />
+  <img alt="Some picture" src="/img/image.png" />
+</picture>
+```
+
 ## Available extensions
 
 Type attribute will be assigned automatically based on extension of image
