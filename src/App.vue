@@ -59,12 +59,13 @@ import VuePictureElement from '@/components/VuePictureElement'
       },
       settings2: {
         label: {
-          media: { 'max-width': '200px', orientation: 'landscape' },
-          delimeters: ['200w', '400w'],
+          media: { 'max-width': '1200px', orientation: 'landscape' },
+
+          delimeters: ['320w', '480w', '800w'],
           size: [
-            [{ 'max-width': '300px' }, '50em'],
-            ['40em'],
-            [{ 'min-width': '20px' }, '10vw']
+            [{ 'max-width': '320px' }, '280px'],
+            [{ 'max-width': '480px' }, '440px'],
+            ['800px']
           ],
           test: /png/
         }

@@ -16,6 +16,20 @@
     "dist/*.js",
     "src/types/vue-picture-element.d.ts"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smwbtech/vue-picture-element"
+  },
+  "homepage": "https://github.com/smwbtech/vue-picture-element",
+  "bugs": {
+    "url": "https://github.com/smwbtech/vue-picture-element/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Roman Privalov",
+    "email": "roman.privalov@gmail.com",
+    "url": "https://t.me/RomanPrivalov"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

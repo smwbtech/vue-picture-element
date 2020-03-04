@@ -1,5 +1,11 @@
 # vue-picture-element
 
+[![vue](https://img.shields.io/badge/Vue-2.x-green.svg)](https://vuejs.org/index.html)
+[![license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/smwbtech/vue-picture-element/blob/master/LICENSE.md)
+[![Build Status](https://travis-ci.org/smwbtech/vue-picture-element.svg?branch=master)](https://travis-ci.org/smwbtech/vue-picture-element)
+[![Coverage Status](https://coveralls.io/repos/github/smwbtech/vue-picture-element/badge.svg?branch=master)](https://coveralls.io/github/smwbtech/vue-picture-element?branch=master)
+[![Size](https://badgen.net/bundlephobia/minzip/@smartweb/vue-picture-element@latest)](https://bundlephobia.com/result?p=@smartweb/vue-picture-element@latest)
+
 vue-picture-element is a component to render flexible images. It based on picture html element and provide all possibilities that has origin, but automatize some functionality
 
 - [Installation](#installation)
