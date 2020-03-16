@@ -6,7 +6,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/smwbtech/vue-picture-element/badge.svg?branch=master)](https://coveralls.io/github/smwbtech/vue-picture-element?branch=master)
 [![Size](https://badgen.net/bundlephobia/minzip/vue-picture-element@latest)](https://bundlephobia.com/result?p=vue-picture-element@latest)
 
-vue-picture-element is a component to render flexible images. It based on picture html element and provide all possibilities that has origin, but automatize some functionality
+vue-picture-element is a component to render flexible images. It based on the `<picture>` HTML element, and provides all possibilities that has origin, but automates some functionality.
 
 - [Installation](#installation)
 - [Props](#props)
@@ -25,7 +25,7 @@ vue-picture-element is a component to render flexible images. It based on pictur
 npm install vue-picture-element
 ```
 
-Import component and register it locally
+Import the component and register it locally:
 
 ```javascript
 import VueTextTransition from 'vue-picture-element'
@@ -36,7 +36,7 @@ export default {
 }
 ```
 
-Or register the component globally in your app entry point (main.js or as you called it)
+Or, you can register the component globally in your app's entry point (commonly `main.js`, or whatever you named your entry point).
 
 ```javascript
 import Vue from 'vue'
@@ -51,29 +51,33 @@ _optional_
 
 | Property       | Type     | Default | Description                                                                                           |
 | -------------- | -------- | ------- | ----------------------------------------------------------------------------------------------------- |
-| **extensions** | string[] | -       | Array of extensions, for example \['webp','png','jpg'\] [available extensions](#available-extensions) |
-| **path**       | string   | '/'     | Path to folder with images, for example '/images'                                                     |
+| **extensions** | string[] | -       | Array of extensions (for example: `['webp','png','jpg']`) [available extensions](#available-extensions) |
+| **path**       | string   | `'/'`   | Path to folder with images (for example: `'/images'`)                                                  |
 | **name**       | string   | -       | Base name for image                                                                                   |
-| _settings_     | object   | -       | Settings for image [more info with examples](#settings-object)                                        |
+| _settings_     | object   | -       | Settings for image ([more info with examples](#settings-object))                                     |
 
 ## Settings object
 
-Settings object should implements following interface
+The Settings object should implement following interface:
 
 ```javascript
 {
     label: {
-        /* All available media queries. Will form media attribute */
+        /* All available media queries. Used for the `media` attribute. */
         media: { 'max-width': '1200px', orientation: 'landscape' },
-        /* Delimetrs for width or pixel ratio. Don't mix them. */
-        delimeters: ['320w', '480w', '800w'], // or it could be ['2x', '3x'] if you are interested in pixel ratio
-        /* Will form size attribute */
+        
+        /* Delimeters for width or pixel-ratio. Don't mix them! The next line is for width. */
+        delimeters: ['320w', '480w', '800w'], 
+        // (Or, for pixel ratio, use `['2x', '3x']`)
+        
+        /* Used for the `size` attribute. */
         size: [
             [{ 'max-width': '320px' }, '280px'],
             [{ 'max-width': '480px' }, '440px']
             ['800px'],
         ],
-        /* If you want to implement this settings only for particular image format, pass regexp with it */
+        
+        /* If you want a Settings object to apply only to certain image formats, pass a regexp with it */
         test: /png/
     }
 }
@@ -81,10 +85,10 @@ Settings object should implements following interface
 
 ### Base example
 
-So, lets try to use the above-stated example
+Let's use the example from above:
 
 ```html
-<temlate>
+<template>
      <VuePictureElement
       alt="Some picture"
       :extensions="['webp', 'png']"
@@ -109,9 +113,9 @@ export default {
 }
 ```
 
-It will form the following html code
+This will render the following HTML:
 
-**result html**
+**result HTML**
 
 ```html
 <picture>
@@ -132,19 +136,19 @@ It will form the following html code
 
 ### Width and pixel ratio delimiters
 
-You shouldn't mix types delimiters
+Don't mix both types.  
 
 #### Width delimiters
 
 ```javascript
 {
   label: {
-    delimetrs: ['200w', '400w']
+    delimeters: ['200w', '400w']
   }
 }
 ```
 
-**result html**
+**result HTML**
 
 ```html
 <picture>
@@ -165,12 +169,12 @@ You shouldn't mix types delimiters
 ```javascript
 {
   label: {
-    delimetrs: ['2x', '3x']
+    delimeters: ['2x', '3x']
   }
 }
 ```
 
-**result html**
+**result HTML**
 
 ```html
 <picture>
@@ -188,17 +192,17 @@ You shouldn't mix types delimiters
 
 #### Empty delimeter
 
-If you want srcset to contain path to image without any delimeter, just pass empty string
+If you want the `srcset` attribute to include an image path without any delimeters, just pass an empty string.
 
 ```javascript
 {
   label: {
-    delimetrs: ['', '2x', '3x']
+    delimeters: ['', '2x', '3x']
   }
 }
 ```
 
-**result html**
+**result HTML**
 
 ```html
 <picture>
@@ -216,17 +220,17 @@ If you want srcset to contain path to image without any delimeter, just pass emp
 
 ### Optional label
 
-If you don't want label to be part of path to image, just start it with pewfix '\$'
+If you don't want the label to be part of the image's path, just prefix it with `$`.
 
 ```javascript
 {
   $label: {
-    delimetrs: ['', '2x', '3x']
+    delimeters: ['', '2x', '3x']
   }
 }
 ```
 
-**result html**
+**result HTML**
 
 ```html
 <picture>
@@ -244,7 +248,7 @@ If you don't want label to be part of path to image, just start it with pewfix '
 
 ## Available extensions
 
-Type attribute will be assigned automatically based on extension of image
+The `type` attribute is assigned automatically based on the image extension.
 
 | Extension | Type          |
 | --------- | ------------- |
