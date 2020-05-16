@@ -1,3 +1,5 @@
+declare module 'vue-picture-element'
+
 declare interface MediaQuery {
   [key: string]: [string]
 }
