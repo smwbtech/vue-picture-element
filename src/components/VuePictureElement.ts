@@ -30,6 +30,9 @@ export default class VuePictureElement extends Vue {
         src: `${this.$props.path}/${this.$props.name}.${
           this.$props.extensions[this.$props.extensions.length - 1]
         }`
+      },
+      on: {
+        load: (e: Event) => this.$emit('image-loaded', e)
       }
     })
     this.$props.extensions.forEach((ext: AvailableTypes) => {
@@ -60,7 +63,7 @@ export default class VuePictureElement extends Vue {
           } else {
             const source = h('source', {
               attrs: {
-                src: `${this.$props.path}/${this.$props.name}.${ext}`,
+                srcset: `${this.$props.path}/${this.$props.name}.${ext}`,
                 type: Extansions[ext]
               }
             })
@@ -77,6 +80,14 @@ export default class VuePictureElement extends Vue {
         sources.push(source)
       }
     })
-    return h('picture', {}, [...sources, img])
+    return h(
+      'picture',
+      {
+        on: {
+          'image-loaded': (e: Event) => this.$emit('image-loaded', e)
+        }
+      },
+      [...sources, img]
+    )
   }
 }
