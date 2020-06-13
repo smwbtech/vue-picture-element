@@ -28,7 +28,7 @@ npm install vue-picture-element
 Import the component and register it locally:
 
 ```javascript
-import VueTextTransition from 'vue-picture-element'
+import VuePictureElement from 'vue-picture-element'
 export default {
   components: {
     VuePictureElement
