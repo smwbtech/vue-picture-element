@@ -73,7 +73,7 @@ export default class VuePictureElement extends Vue {
       } else {
         const source = h('source', {
           attrs: {
-            src: `${this.$props.path}/${this.$props.name}.${ext}`,
+            srcset: `${this.$props.path}/${this.$props.name}.${ext}`,
             type: Extansions[ext]
           }
         })
