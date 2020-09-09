@@ -195,15 +195,15 @@ describe('Testing VuePictureElement.ts', () => {
         }
       })
 
-      sourceElWebp = cmp.find('source[src*="/img/image.webp"]')
-      sourceElPng = cmp.find('source[src*="/img/image.png"]')
-      sourceElJpg = cmp.find('source[src*="/img/image.jpg"]')
+      sourceElWebp = cmp.find('source[srcset*="/img/image.webp"]')
+      sourceElPng = cmp.find('source[srcset*="/img/image.png"]')
+      sourceElJpg = cmp.find('source[srcset*="/img/image.jpg"]')
     })
 
-    it('Should have src eq "/img/image.[ext]"', () => {
-      expect(sourceElWebp.attributes('src')).toEqual('/img/image.webp')
-      expect(sourceElPng.attributes('src')).toEqual('/img/image.png')
-      expect(sourceElJpg.attributes('src')).toEqual('/img/image.jpg')
+    it('Should have srcset eq "/img/image.[ext]"', () => {
+      expect(sourceElWebp.attributes('srcset')).toEqual('/img/image.webp')
+      expect(sourceElPng.attributes('srcset')).toEqual('/img/image.png')
+      expect(sourceElJpg.attributes('srcset')).toEqual('/img/image.jpg')
     })
   })
 })
